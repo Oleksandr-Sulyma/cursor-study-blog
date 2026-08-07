@@ -20,17 +20,17 @@
 - Use the centralized error middleware for unhandled controller/service errors.
 - Wrap async controllers with the existing `asyncHandler` (or `catchAsync` if the project uses it). Do not duplicate controller-level `try/catch` blocks solely to send standard error responses.
 - Use `try/catch` locally only when an operation needs local recovery, cleanup, compensation, or an error transformation before rethrowing.
-- For expected HTTP errors, throw `createHttpError(statusCode, message)` when the project provides that helper. If it is not available, do not add a dependency or change the error architecture as part of an unrelated task; make that change only when explicitly requested.
+- For expected HTTP errors, throw `createHttpError(statusCode, message)` when the project provides that helper. If it is not available, do not add a dependency or change the error architecture as part of an unrelated task; make that change only when explicitly requested. Until the project explicitly adopts an HTTP-error helper, follow the existing response/error pattern used by adjacent controllers and middleware; do not introduce a second error mechanism in an unrelated task.
 - Use early returns for validation and authorization preconditions. The centralized handler owns unexpected server errors.
 - Return safe client-facing messages. Do not expose stack traces, database details, secrets, or other internal information outside development.
 
 ## API, Validation, and Database
 
-- Use plural REST resources and the HTTP method that matches the operation. Keep related endpoints in their existing route modules and apply middleware at the route level when needed.
+- Follow existing route naming and REST conventions. Prefer plural resource names for new isolated endpoints when this does not change the existing API contract. Keep related endpoints in their existing route modules and apply middleware at the route level when needed.
 - Validate and sanitize input at the boundary, use Mongoose schema validation, and prevent NoSQL injection.
 - Use descriptive schema fields, appropriate types, required/default values, and indexes for fields that are queried frequently.
 - Use `.lean()` for read-only Mongoose queries when a document instance is not required. Use `.select()`, limits, and `.populate()` deliberately to avoid unnecessary data and N+1-style work.
-- Use transactions for critical multi-document operations. Ensure sessions are committed, aborted on failure, and ended in `finally`.
+- Use transactions when atomicity across multiple documents is required and the configured MongoDB deployment supports them; otherwise follow the existing persistence pattern.
 
 ## Security and Operations
 

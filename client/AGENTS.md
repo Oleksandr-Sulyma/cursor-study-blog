@@ -4,7 +4,7 @@
 
 - These rules apply to `client/` and extend the root `AGENTS.md`.
 - Keep the current frontend stack: JavaScript, React, Vite, Ant Design, Axios, React Router, React Hot Toast, and the existing custom hooks/API layer.
-- Use functional React components and hooks; do not introduce class components, TypeScript, CSS-in-JS, styled-components, or another UI library.
+- Use functional React components and hooks; do not introduce class components. Do not introduce TypeScript, CSS-in-JS, styled-components, or another UI library unless the task explicitly requires and authorizes that architectural change.
 
 ## CURRENT PROJECT ARCHITECTURE
 
@@ -27,7 +27,7 @@
 - Use Ant Design layout, Grid, Space, Form, feedback components, and responsive props where appropriate.
 - Component-level colors and spacing must use Ant Design theme tokens, component props, and the existing design system; do not introduce arbitrary color values or spacing scales.
 - Centralized theme configuration in `ConfigProvider` is allowed. Custom tokens such as `colorPrimary` and component tokens belong there, not scattered through components.
-- Do not add Tailwind utility classes or Tailwind-based examples. Do not replace the existing Ant Design theme with a different styling system.
+- Do not add Tailwind utility classes or Tailwind-based examples unless the task explicitly requires and authorizes that architectural change. Do not replace the existing Ant Design theme with a different styling system.
 
 ## React Components and Hooks
 
