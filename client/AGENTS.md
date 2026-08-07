@@ -23,7 +23,7 @@
 
 ## Ant Design and Styling
 
-- Use Ant Design components for UI when Ant Design provides the needed capability. Do not mix UI libraries.
+- Use Ant Design components for new UI when Ant Design provides the needed capability and an existing project-specific component is not more appropriate. Custom components are allowed when Ant Design does not provide a suitable solution; do not introduce another UI library unless the task explicitly requires and authorizes that architectural change.
 - Use Ant Design layout, Grid, Space, Form, feedback components, and responsive props where appropriate.
 - Component-level colors and spacing must use Ant Design theme tokens, component props, and the existing design system; do not introduce arbitrary color values or spacing scales.
 - Centralized theme configuration in `ConfigProvider` is allowed. Custom tokens such as `colorPrimary` and component tokens belong there, not scattered through components.
